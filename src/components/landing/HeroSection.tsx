@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImage from "@/assets/hero-quran.jpg";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HeroSection = () => {
+  const { t } = useLanguage();
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/20">
       <div className="container px-4 py-20 md:py-28 md:px-8">

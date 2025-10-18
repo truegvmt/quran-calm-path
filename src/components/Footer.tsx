@@ -1,6 +1,8 @@
 import { BookOpen, Github, Twitter } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useLanguage();
   return (
     <footer className="border-t border-border/40 bg-muted/30">
       <div className="container px-4 py-12 md:px-8">

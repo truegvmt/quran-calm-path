@@ -6,6 +6,8 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { ArrowRight, ArrowLeft, Check } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { Header } from "@/components/Header";
 
 // INTEGRATION POINT: Supabase
 // Store quiz results in user_profile table with fields:
@@ -84,6 +86,7 @@ const steps = [
 export default function Onboarding() {
   const [currentStep, setCurrentStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string | string[]>>({});
+  const { t } = useLanguage();
 
   const progress = ((currentStep + 1) / steps.length) * 100;
   const step = steps[currentStep];
@@ -92,10 +95,11 @@ export default function Onboarding() {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
     } else {
-      // INTEGRATION: Save to Supabase and redirect to dashboard
+      // INTEGRATION: Save to Supabase
       console.log("Quiz completed:", answers);
       // await supabase.from('user_profiles').update({ ...answers })
-      window.location.href = "/explore";
+      // Redirect to auth/signup page
+      window.location.href = "/auth";
     }
   };
 
@@ -113,13 +117,14 @@ export default function Onboarding() {
     (Array.isArray(answers[step.id]) ? answers[step.id].length > 0 : answers[step.id]));
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20 py-12 px-4">
-      <div className="container max-w-2xl mx-auto">
+    <div className="min-h-screen bg-gradient-to-b from-background to-muted/20">
+      <Header />
+      <div className="container max-w-2xl mx-auto py-12 px-4">
         {/* Progress */}
         <div className="mb-8 space-y-2">
           <div className="flex justify-between text-sm text-muted-foreground">
-            <span>Step {currentStep + 1} of {steps.length}</span>
-            <span>{Math.round(progress)}% complete</span>
+            <span>{t('onboarding.step')} {currentStep + 1} {t('onboarding.of')} {steps.length}</span>
+            <span>{Math.round(progress)}% {t('onboarding.complete')}</span>
           </div>
           <Progress value={progress} className="h-2" />
         </div>
@@ -177,11 +182,11 @@ export default function Onboarding() {
             {currentStep === steps.length - 1 && (
               <div className="pt-4">
                 <Label htmlFor="notes" className="text-sm text-muted-foreground">
-                  Anything else you'd like to share? (Optional)
+                  {t('onboarding.optional')}
                 </Label>
                 <Textarea
                   id="notes"
-                  placeholder="Share your thoughts..."
+                  placeholder={t('onboarding.placeholder')}
                   className="mt-2 min-h-[100px]"
                   value={(answers.notes as string) || ""}
                   onChange={(e) => handleAnswer(e.target.value)}
@@ -200,7 +205,7 @@ export default function Onboarding() {
             className="gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
-            Back
+            {t('onboarding.back')}
           </Button>
           <Button
             variant="hero"
@@ -208,7 +213,7 @@ export default function Onboarding() {
             disabled={!isStepComplete}
             className="gap-2"
           >
-            {currentStep === steps.length - 1 ? "Complete" : "Next"}
+            {currentStep === steps.length - 1 ? t('onboarding.finish') : t('onboarding.next')}
             <ArrowRight className="h-4 w-4" />
           </Button>
         </div>
