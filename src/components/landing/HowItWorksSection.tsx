@@ -2,41 +2,44 @@ import { Card } from "@/components/ui/card";
 import { ListChecks, Lightbulb, Target, Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const steps = [
+const getSteps = (t: any) => [
   {
     icon: ListChecks,
-    title: "Share Your Context",
-    description: "Tell us about your values, life stage, challenges, and spiritual goals through a thoughtful quiz.",
+    title: t('howItWorks.steps.0.title'),
+    description: t('howItWorks.steps.0.description'),
     color: "text-primary",
   },
   {
     icon: Lightbulb,
-    title: "Receive Insights",
-    description: "Get personalized Quranic wisdom with ayah references, translations, and context tailored to your life.",
+    title: t('howItWorks.steps.1.title'),
+    description: t('howItWorks.steps.1.description'),
     color: "text-accent",
   },
   {
     icon: Target,
-    title: "Design Your Action",
-    description: "Transform insights into concrete action plans with what, when, how, and success metrics you define.",
+    title: t('howItWorks.steps.2.title'),
+    description: t('howItWorks.steps.2.description'),
     color: "text-primary",
   },
   {
     icon: Heart,
-    title: "Reflect & Grow",
-    description: "Journal your experiences, track reflections, and let the wisdom deepen over time.",
+    title: t('howItWorks.steps.3.title'),
+    description: t('howItWorks.steps.3.description'),
     color: "text-accent",
   },
 ];
 
 export const HowItWorksSection = () => {
+  const { t } = useLanguage();
+  const steps = getSteps(t);
+  
   return (
     <section id="how-it-works" className="py-20 md:py-28 bg-gradient-to-b from-background to-muted/20">
       <div className="container px-4 md:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">How It Works</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{t('howItWorks.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            A calm, deliberate process from insight to implementation
+            {t('howItWorks.subtitle')}
           </p>
         </div>
 

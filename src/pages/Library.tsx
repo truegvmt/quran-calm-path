@@ -70,22 +70,22 @@ export default function Library() {
           <TabsList className="grid w-full max-w-md grid-cols-3">
             <TabsTrigger value="active" className="gap-2">
               <CheckCircle2 className="h-4 w-4" />
-              Active
+              {t('library.tabs.active')}
             </TabsTrigger>
             <TabsTrigger value="archived" className="gap-2">
               <Archive className="h-4 w-4" />
-              Archived
+              {t('library.tabs.archived')}
             </TabsTrigger>
             <TabsTrigger value="saved" className="gap-2">
               <Bookmark className="h-4 w-4" />
-              Saved
+              {t('library.tabs.saved')}
             </TabsTrigger>
           </TabsList>
 
           <TabsContent value={activeTab} className="mt-8 space-y-6">
             {filteredItems.length === 0 ? (
               <Card className="text-center p-12 border-dashed">
-                <p className="text-muted-foreground">No items yet. Start exploring Surahs to add insights!</p>
+                <p className="text-muted-foreground">{t('library.noItems')}</p>
               </Card>
             ) : (
               filteredItems.map((item, index) => (
@@ -119,30 +119,30 @@ export default function Library() {
                       </div>
                     </div>
                     <CardDescription className="text-xs">
-                      Added {new Date(item.created_at).toLocaleDateString()}
+                      {t('library.added')} {new Date(item.created_at).toLocaleDateString()}
                     </CardDescription>
                   </CardHeader>
                   <CardContent className="space-y-4">
                     {/* Action Plan */}
                     <div className="space-y-3 p-4 bg-muted/20 rounded-lg">
-                      <h3 className="font-semibold text-sm">Action Plan</h3>
+                      <h3 className="font-semibold text-sm">{t('library.actionPlanTitle')}</h3>
                       <div className="grid gap-3 text-sm">
                         <div>
-                          <span className="text-muted-foreground font-medium">What: </span>
+                          <span className="text-muted-foreground font-medium">{t('library.actionPlan.what')}: </span>
                           <span>{item.action_plan.what}</span>
                         </div>
                         <div className="grid grid-cols-2 gap-3">
                           <div>
-                            <span className="text-muted-foreground font-medium">When: </span>
+                            <span className="text-muted-foreground font-medium">{t('library.actionPlan.when')}: </span>
                             <span>{item.action_plan.when}</span>
                           </div>
                           <div>
-                            <span className="text-muted-foreground font-medium">Frequency: </span>
+                            <span className="text-muted-foreground font-medium">{t('library.frequency')}: </span>
                             <span>{item.action_plan.frequency}</span>
                           </div>
                         </div>
                         <div>
-                          <span className="text-muted-foreground font-medium">Success looks like: </span>
+                          <span className="text-muted-foreground font-medium">{t('library.successMetrics')}: </span>
                           <span>{item.action_plan.metrics}</span>
                         </div>
                       </div>
@@ -151,7 +151,7 @@ export default function Library() {
                     {/* Notes */}
                     <div className="space-y-2">
                       <div className="flex items-center justify-between">
-                        <Label className="text-sm font-semibold">Your Reflections</Label>
+                        <Label className="text-sm font-semibold">{t('library.reflections')}</Label>
                         <Button
                           variant="ghost"
                           size="sm"
@@ -162,7 +162,7 @@ export default function Library() {
                           }}
                         >
                           <Edit2 className="h-3 w-3" />
-                          Edit
+                          {t('library.edit')}
                         </Button>
                       </div>
                       {editingNote === item.id ? (
@@ -171,7 +171,7 @@ export default function Library() {
                             value={noteText}
                             onChange={(e) => setNoteText(e.target.value)}
                             className="min-h-[80px]"
-                            placeholder="How is this practice going? What have you noticed?"
+                            placeholder={t('library.reflectionPlaceholder')}
                           />
                           <div className="flex gap-2">
                             <Button
@@ -182,20 +182,20 @@ export default function Library() {
                                 setEditingNote(null);
                               }}
                             >
-                              Save
+                              {t('library.save')}
                             </Button>
                             <Button
                               size="sm"
                               variant="ghost"
                               onClick={() => setEditingNote(null)}
                             >
-                              Cancel
+                              {t('library.cancel')}
                             </Button>
                           </div>
                         </div>
                       ) : (
                         <p className="text-sm text-muted-foreground leading-relaxed p-3 bg-muted/10 rounded-lg">
-                          {item.notes || "No reflections yet. Click Edit to add your thoughts."}
+                          {item.notes || t('library.noReflections')}
                         </p>
                       )}
                     </div>

@@ -67,7 +67,7 @@ export default function SurahDetail() {
         {/* Back Button */}
         <Button variant="ghost" className="mb-6 gap-2" onClick={() => window.location.href = "/explore"}>
           <ArrowLeft className="h-4 w-4" />
-          Back to Explore
+          {t('surahDetail.backToExplore')}
         </Button>
 
         {/* Surah Overview */}
@@ -79,7 +79,7 @@ export default function SurahDetail() {
                 <p className="text-4xl text-muted-foreground font-arabic">{surah.name_arabic}</p>
               </div>
               <Badge variant="outline" className="text-base px-3 py-1">
-                Surah {surah.number}
+                {t('surahDetail.surah')} {surah.number}
               </Badge>
             </div>
           </CardHeader>
@@ -91,20 +91,20 @@ export default function SurahDetail() {
               </div>
               <div className="flex items-center gap-2">
                 <Book className="h-4 w-4" />
-                <span>{surah.verses} verses</span>
+                <span>{surah.verses} {t('surahDetail.verses')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Clock className="h-4 w-4" />
-                <span>{surah.reading_time} read</span>
+                <span>{surah.reading_time} {t('surahDetail.read')}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-primary" />
-                <span className="text-primary font-medium">{mockInsights.length} personalized insights</span>
+                <span className="text-primary font-medium">{mockInsights.length} {t('surahDetail.personalizedInsights')}</span>
               </div>
             </div>
 
             <div className="space-y-2">
-              <h3 className="font-semibold text-sm">Key Themes</h3>
+              <h3 className="font-semibold text-sm">{t('surahDetail.keyThemes')}</h3>
               <div className="flex flex-wrap gap-2">
                 {surah.themes.map((theme) => (
                   <Badge key={theme} variant="secondary">
@@ -115,7 +115,7 @@ export default function SurahDetail() {
             </div>
 
             <div className="space-y-2 pt-2">
-              <h3 className="font-semibold text-sm">Revelation Context</h3>
+              <h3 className="font-semibold text-sm">{t('surahDetail.revelationContext')}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{surah.revelation_context}</p>
             </div>
           </CardContent>
@@ -123,7 +123,7 @@ export default function SurahDetail() {
 
         {/* Insights */}
         <div className="space-y-4">
-          <h2 className="text-2xl font-bold">Insights Tailored For You</h2>
+          <h2 className="text-2xl font-bold">{t('surahDetail.insightsTailored')}</h2>
 
           {mockInsights.map((insight, index) => (
             <Card
@@ -151,7 +151,7 @@ export default function SurahDetail() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm font-medium text-primary">
                     <Sparkles className="h-4 w-4" />
-                    <span>Why This Matters to You</span>
+                    <span>{t('surahDetail.whyThisMatters')}</span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed">{insight.personal_relevance}</p>
                 </div>
@@ -160,7 +160,7 @@ export default function SurahDetail() {
                 <div className="space-y-2">
                   <div className="flex items-center gap-2 text-sm font-medium">
                     <MessageCircle className="h-4 w-4" />
-                    <span>Reflection Prompt</span>
+                    <span>{t('surahDetail.reflectionPromptLabel')}</span>
                   </div>
                   <p className="text-sm text-muted-foreground leading-relaxed italic">{insight.reflection_prompt}</p>
                 </div>
@@ -170,14 +170,14 @@ export default function SurahDetail() {
                   <DialogTrigger asChild>
                     <Button variant="wisdom" className="w-full gap-2" onClick={() => setSelectedInsight(insight)}>
                       <Plus className="h-4 w-4" />
-                      Add to My Library
+                      {t('surahDetail.addToLibraryBtn')}
                     </Button>
                   </DialogTrigger>
                   <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                      <DialogTitle>Design Your Action Plan</DialogTitle>
+                      <DialogTitle>{t('surahDetail.actionPlanTitle')}</DialogTitle>
                       <DialogDescription>
-                        Transform this insight into a concrete, measurable practice
+                        {t('surahDetail.actionPlanDescription')}
                       </DialogDescription>
                     </DialogHeader>
 
@@ -188,10 +188,10 @@ export default function SurahDetail() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="what">What will you do?</Label>
+                        <Label htmlFor="what">{t('surahDetail.whatLabel')}</Label>
                         <Textarea
                           id="what"
-                          placeholder="E.g., When I feel anxious, I will pause and make dua before taking action..."
+                          placeholder={t('surahDetail.whatPlaceholder')}
                           value={actionPlan.what}
                           onChange={(e) => setActionPlan({ ...actionPlan, what: e.target.value })}
                         />
@@ -199,19 +199,19 @@ export default function SurahDetail() {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-2">
-                          <Label htmlFor="when">When?</Label>
+                          <Label htmlFor="when">{t('surahDetail.whenLabel')}</Label>
                           <Input
                             id="when"
-                            placeholder="E.g., Morning, after Fajr..."
+                            placeholder={t('surahDetail.whenPlaceholder')}
                             value={actionPlan.when}
                             onChange={(e) => setActionPlan({ ...actionPlan, when: e.target.value })}
                           />
                         </div>
                         <div className="space-y-2">
-                          <Label htmlFor="frequency">How often?</Label>
+                          <Label htmlFor="frequency">{t('surahDetail.howOftenLabel')}</Label>
                           <Input
                             id="frequency"
-                            placeholder="E.g., Daily, weekly..."
+                            placeholder={t('surahDetail.howOftenPlaceholder')}
                             value={actionPlan.frequency}
                             onChange={(e) => setActionPlan({ ...actionPlan, frequency: e.target.value })}
                           />
@@ -219,10 +219,10 @@ export default function SurahDetail() {
                       </div>
 
                       <div className="space-y-2">
-                        <Label htmlFor="metrics">How will you know it's working?</Label>
+                        <Label htmlFor="metrics">{t('surahDetail.metricsLabel')}</Label>
                         <Textarea
                           id="metrics"
-                          placeholder="E.g., I feel calmer, my relationships improve, I sleep better..."
+                          placeholder={t('surahDetail.metricsPlaceholder')}
                           value={actionPlan.metrics}
                           onChange={(e) => setActionPlan({ ...actionPlan, metrics: e.target.value })}
                         />
@@ -237,7 +237,7 @@ export default function SurahDetail() {
                           // await supabase.from('library').insert({ ... })
                         }}
                       >
-                        Save to Library
+                        {t('surahDetail.saveToLibraryBtn')}
                       </Button>
                     </div>
                   </DialogContent>

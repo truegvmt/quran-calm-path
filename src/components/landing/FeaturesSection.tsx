@@ -2,47 +2,50 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { BookOpen, Sparkles, Library, MessageCircle, Calendar, Search } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const features = [
+const getFeatures = (t: any) => [
   {
     icon: BookOpen,
-    title: "Surah Exploration",
-    description: "Browse all 114 Surahs with Makki/Madani context, themes, and revelation background. See estimated reading time and personalized insight counts.",
+    title: t('features.list.0.title'),
+    description: t('features.list.0.description'),
   },
   {
     icon: Sparkles,
-    title: "Personalized Insights",
-    description: "AI-powered analysis connects Quranic verses to your life context. Each insight includes ayah reference, Arabic text, translation, and relevance.",
+    title: t('features.list.1.title'),
+    description: t('features.list.1.description'),
   },
   {
     icon: Library,
-    title: "Your Wisdom Library",
-    description: "Organize insights into Active, Archived, and Saved. Add notes, life area tags, and implementation designs. Your spiritual growth, tracked.",
+    title: t('features.list.2.title'),
+    description: t('features.list.2.description'),
   },
   {
     icon: MessageCircle,
-    title: "Reflection Prompts",
-    description: "Daily and weekly prompts help you pause, contemplate, and journal. Rich-text editor for deep reflection on how insights manifest.",
+    title: t('features.list.3.title'),
+    description: t('features.list.3.description'),
   },
   {
     icon: Calendar,
-    title: "Smart Reminders",
-    description: "Calendar integration and notification hooks (WhatsApp, Telegram) keep insights active. Focus Mode for distraction-free contemplation.",
+    title: t('features.list.4.title'),
+    description: t('features.list.4.description'),
   },
   {
     icon: Search,
-    title: "Discovery & Search",
-    description: "Find wisdom by theme, life situation, Surah, or ayah. Filter by active/archived status. Surface the guidance you need, when you need it.",
+    title: t('features.list.5.title'),
+    description: t('features.list.5.description'),
   },
 ];
 
 export const FeaturesSection = () => {
+  const { t } = useLanguage();
+  const features = getFeatures(t);
+  
   return (
     <section id="features" className="py-20 md:py-28 bg-background">
       <div className="container px-4 md:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Core Features</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{t('features.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Everything you need to transform Quranic wisdom into lived practice
+            {t('features.subtitle')}
           </p>
         </div>
 

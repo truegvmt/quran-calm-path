@@ -2,37 +2,40 @@ import { Card } from "@/components/ui/card";
 import { Shield, Users, Sparkles, Heart } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const trustPoints = [
+const getTrustPoints = (t: any) => [
   {
     icon: Shield,
-    title: "Scholar-Backed AI",
-    description: "Our AI is trained on verified Quranic translations and classical tafsir. Every insight references authentic sources.",
+    title: t('transparency.points.0.title'),
+    description: t('transparency.points.0.description'),
   },
   {
     icon: Users,
-    title: "No Performative Metrics",
-    description: "No likes, no streaks, no public leaderboards. Your spiritual journey is between you and Allah.",
+    title: t('transparency.points.1.title'),
+    description: t('transparency.points.1.description'),
   },
   {
     icon: Sparkles,
-    title: "Transparent Process",
-    description: "See exactly how insights are generated—ayah references, context, and how they map to your profile.",
+    title: t('transparency.points.2.title'),
+    description: t('transparency.points.2.description'),
   },
   {
     icon: Heart,
-    title: "Humility First",
-    description: "We don't claim perfection. This is a tool for reflection, not a replacement for scholars or community.",
+    title: t('transparency.points.3.title'),
+    description: t('transparency.points.3.description'),
   },
 ];
 
 export const TransparencySection = () => {
+  const { t } = useLanguage();
+  const trustPoints = getTrustPoints(t);
+  
   return (
     <section className="py-20 md:py-28 bg-muted/20">
       <div className="container px-4 md:px-8">
         <div className="text-center space-y-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Trust & Transparency</h2>
+          <h2 className="text-3xl md:text-4xl font-bold tracking-tight">{t('transparency.title')}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Built with honesty and reverence for the sacred text
+            {t('transparency.subtitle')}
           </p>
         </div>
 
