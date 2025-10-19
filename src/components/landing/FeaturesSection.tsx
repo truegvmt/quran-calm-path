@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { BookOpen, Sparkles, Library, MessageCircle, Calendar, Search } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const features = [
   {

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Archive, Bookmark, CheckCircle2, Edit2, Trash2 } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // INTEGRATION POINT: Supabase
 // Fetch from library table with filters: status = "active" | "archived" | "saved"
@@ -46,6 +47,7 @@ const mockLibraryItems = [
 ];
 
 export default function Library() {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState("active");
   const [editingNote, setEditingNote] = useState<number | null>(null);
   const [noteText, setNoteText] = useState("");
@@ -58,9 +60,9 @@ export default function Library() {
 
       <main className="container px-4 py-8 md:px-8 max-w-6xl mx-auto">
         <div className="space-y-2 mb-8">
-          <h1 className="text-4xl font-bold tracking-tight">Your Wisdom Library</h1>
+          <h1 className="text-4xl font-bold tracking-tight">{t('library.title')}</h1>
           <p className="text-lg text-muted-foreground">
-            Track your active practices, archive completed ones, and save inspiration
+            {t('library.subtitle')}
           </p>
         </div>
 

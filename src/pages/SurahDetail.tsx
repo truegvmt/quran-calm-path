@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Header } from "@/components/Header";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -37,6 +38,7 @@ const mockInsights = [
 ];
 
 export default function SurahDetail() {
+  const { t } = useLanguage();
   const [selectedInsight, setSelectedInsight] = useState<typeof mockInsights[0] | null>(null);
   const [actionPlan, setActionPlan] = useState({
     what: "",

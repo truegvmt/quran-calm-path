@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Search, Book, MapPin, Clock } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 // INTEGRATION POINT: Load from Quran JSON
 // Structure: { number, name_arabic, name_english, type: "Makki"/"Madani", total_verses, themes: [] }
@@ -19,6 +20,7 @@ const mockSurahs = [
 ];
 
 export default function Explore() {
+  const { t } = useLanguage();
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredSurahs = mockSurahs.filter((surah) =>
@@ -35,16 +37,16 @@ export default function Explore() {
         {/* Search Header */}
         <div className="max-w-4xl mx-auto mb-12 space-y-6">
           <div className="space-y-2">
-            <h1 className="text-4xl font-bold tracking-tight">Explore Surahs</h1>
+            <h1 className="text-4xl font-bold tracking-tight">{t('explore.title')}</h1>
             <p className="text-lg text-muted-foreground">
-              Discover personalized insights from all 114 Surahs
+              {t('explore.subtitle')}
             </p>
           </div>
 
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
             <Input
-              placeholder="Search by name, number, or theme..."
+              placeholder={t('explore.search')}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               className="pl-10 h-12 text-base"
@@ -84,7 +86,7 @@ export default function Explore() {
                   </div>
                   <div className="flex items-center gap-1">
                     <Book className="h-4 w-4" />
-                    <span>{surah.verses} verses</span>
+                    <span>{surah.verses} {t('explore.verses')}</span>
                   </div>
                 </div>
 
@@ -98,10 +100,10 @@ export default function Explore() {
 
                 <div className="pt-2 flex items-center justify-between border-t border-border/50">
                   <span className="text-sm text-primary font-medium">
-                    {surah.insights} personalized insights
+                    {surah.insights} {t('explore.insights')}
                   </span>
                   <Button variant="ghost" size="sm" className="text-xs">
-                    Explore →
+                    {t('explore.exploreBtn')}
                   </Button>
                 </div>
               </CardContent>

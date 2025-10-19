@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Shield, Users, Sparkles, Heart } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const trustPoints = [
   {
