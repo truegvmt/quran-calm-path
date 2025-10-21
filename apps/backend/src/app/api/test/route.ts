@@ -11,8 +11,10 @@ import {
 
 export async function GET() {
   try {
-    // Validate all configurations
-    validateConfig()
+    // Only validate in runtime, not during build
+    if (process.env.NODE_ENV !== 'production' || process.env.VERCEL_ENV) {
+      validateConfig()
+    }
     
     return NextResponse.json({
       message: 'Backend API is working!',

@@ -35,7 +35,7 @@ export function validateSupabaseConfig() {
   }
 }
 
-export function validateClerkConfig() {
+export function validateClerkEnvConfig() {
   const required = ['CLERK_PUBLISHABLE_KEY', 'CLERK_SECRET_KEY', 'CLERK_WEBHOOK_SECRET']
   const missing = required.filter(key => !process.env[key])
   

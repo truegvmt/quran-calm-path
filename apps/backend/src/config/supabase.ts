@@ -8,8 +8,8 @@ export const supabaseConfig = {
 
 // Admin client for server-side operations (bypasses RLS)
 export const supabaseAdmin = createClient(
-  supabaseConfig.url,
-  supabaseConfig.serviceRoleKey,
+  supabaseConfig.url || 'https://dummy.supabase.co',
+  supabaseConfig.serviceRoleKey || 'dummy-key',
   {
     auth: {
       autoRefreshToken: false,
@@ -20,8 +20,8 @@ export const supabaseAdmin = createClient(
 
 // Client for user operations (respects RLS)
 export const supabaseClient = createClient(
-  supabaseConfig.url,
-  supabaseConfig.anonKey
+  supabaseConfig.url || 'https://dummy.supabase.co',
+  supabaseConfig.anonKey || 'dummy-key'
 )
 
 // Helper functions for common operations

@@ -9,7 +9,7 @@ export const openaiConfig = {
 }
 
 export const openaiClient = new OpenAI({
-  apiKey: openaiConfig.apiKey,
+  apiKey: openaiConfig.apiKey || 'dummy-key-for-build',
 })
 
 // Helper functions for common OpenAI operations

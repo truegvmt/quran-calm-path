@@ -1,4 +1,4 @@
-import { auth } from '@clerk/nextjs'
+import { auth } from '@clerk/nextjs/server'
 import { NextRequest } from 'next/server'
 
 export async function getAuthenticatedUser() {
