@@ -11,6 +11,7 @@
   "scripts": {
     "dev": "turbo run dev",
     "build": "turbo run build",
+    "build:dev": "vite build --mode development",
     "test": "turbo run test",
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
@@ -35,3 +36,4 @@
     "tailwindcss-animate": "^1.0.7"
   }
 }
+
